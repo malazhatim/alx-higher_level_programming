@@ -17,11 +17,10 @@ int check_cycle(listint_t *list)
 	while (a != NULL && b != NULL)
 	{
 		a = a->next;
+		if (a == b)
+                        return (1);
 		if (b->next)
 			b = b->next->next;
-
-		if (a == b)
-			return (1);
 	}
 	return (0);
 }
