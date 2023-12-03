@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 /**
  * is_palindrome - checks for list is palindrome
@@ -8,30 +6,30 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int len = 0, i = 0;
-	listint_t *tmp;
-	int Ns[10000];
+	int l = 0, a= 0;
+	listint_t *t;
+	int N[10000];
 
-	tmp = *head;
+	t = *head;
 	if ((*head) == NULL)
 		return (1);
-	while (tmp != NULL)
+	while (t != NULL)
 	{
-		len++;
-		tmp = tmp->next;
+		l++;
+		t = t->next;
 	}
-	if (len == 1)
+	if (l == 1)
 		return (1);
-	tmp = *head;
-	while (tmp != NULL)
+	t = *head;
+	while (t != NULL)
 	{
-		Ns[i] = tmp->n;
-		tmp = tmp->next;
-		i++;
+		N[a] = t->n;
+		t = t->next;
+		a++;
 	}
-	for (i = 0; i <= len / 2; i++)
+	for (a = 0; a <= l / 2; a++)
 	{
-		if (Ns[i] != Ns[len - i - 1])
+		if (N[a] != N[l - a - 1])
 		{
 			return (0);
 		}
