@@ -5,8 +5,9 @@ Module list state where name start with N
 import sys
 import MySQLdb
 
-ef main():
-    connect = MySQLdb.connect(
+
+def main():
+    conn = MySQLdb.connect(
                         host="localhost",
                         port=3306,
                         user=sys.argv[1],
@@ -14,15 +15,17 @@ ef main():
                         db=sys.argv[3],
                         charset="utf8"
                             )
-    c = connect.cursor()
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-    c.execute(query)
-    row = c.fetchall()
+    cur = conn.cursor()
+    search = sys.argv[4]
+    query = """SELECT * FROM states where name = '{:s}'
+            ORDER by id ASC""".format(search)
+    cur.execute(query)
+    row = cur.fetchall()
     for r in row:
-        if r[1][0] == 'N':
+        if r[1] == search:
             print(r)
-    c.close()
-    connect.close()
+    cur.close()
+    conn.close()
 
 
 if __name__ == "__main__":
