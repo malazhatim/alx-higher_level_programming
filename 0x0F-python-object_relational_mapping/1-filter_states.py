@@ -2,6 +2,7 @@
 """
 Module list state where name start with N
 """
+
 import sys
 import MySQLdb
 
@@ -16,13 +17,11 @@ def main():
                         charset="utf8"
                             )
     cur = conn.cursor()
-    search = sys.argv[4]
-    query = """SELECT * FROM states where name = '{:s}'
-            ORDER by id ASC""".format(search)
+    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
     cur.execute(query)
     row = cur.fetchall()
     for r in row:
-        if r[1] == search:
+        if r[1][0] == 'N':
             print(r)
     cur.close()
     conn.close()
